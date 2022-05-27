@@ -2,7 +2,7 @@
   "name": "nasa-project-api",
   "version": "1.0.0",
   "description": "NASA Mission Control API",
-  "main": "src/server.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "build": "cd client && npm install && npm run build",
