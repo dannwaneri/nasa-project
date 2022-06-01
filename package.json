@@ -10,7 +10,7 @@
     "client": "cd client && npm start",
     "dev": "concurrently \"npm run server\" \" npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "heroku-postbuild": "cd client && npm install && npm start  --only=dev --no-shrinkwrap && npm run build"
+    "heroku-postbuild": "cd client && npm install && npm install  --only=dev --no-shrinkwrap && npm run build"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"
