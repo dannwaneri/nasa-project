@@ -6,7 +6,7 @@ const planetsRouter = require('./routes/planets/planets.router');
 const app = express();
 
 app.use(cors({
-    origin: '*',
+    origin: ['http://localhost:3000/', 'https://mysterious-depths-27411.herokuapp.com/']
   }));
 
 app.use(express.json());
