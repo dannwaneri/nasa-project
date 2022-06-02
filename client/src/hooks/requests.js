@@ -35,7 +35,7 @@ async function httpGetPlanets() {
  // Delete launch with given ID.
   async function httpAbortLaunch(id) {
 try {
-      return await fetch('/launches/id', {
+      return await fetch(`/launches/${id}`, {
         method: "delete",
       });
     } catch(err) {
