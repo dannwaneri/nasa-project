@@ -9,10 +9,8 @@
     "server": "nodemon server.js",
     "client": "cd client && npm start",
     "dev": "concurrently \"npm run server\" \" npm run client\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.16"
+    "test": "jest",
+    "test-watch": "jest --watch"
   },
   "keywords": [],
   "author": "",
@@ -26,5 +24,9 @@
   },
   "engines": {
     "node": "16.x"
+  },
+  "devDependencies": {
+    "jest": "^28.1.0",
+    "nodemon": "^2.0.16"
   }
 }
