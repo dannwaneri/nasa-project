@@ -13,7 +13,7 @@ dotenv.config({
   path: './configs/config.env'
 });
 
-
+//console.log(process.env.MONGO_URI)
 async function startServer() {
   try {
     await loadPlanetsData();
