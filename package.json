@@ -18,7 +18,9 @@
   "dependencies": {
     "cors": "^2.8.5",
     "csv-parse": "^5.1.0",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "mongoose": "^6.3.5",
     "nasa-project": "file:.."
   },
   "engines": {
