@@ -6,8 +6,8 @@ const {
 }= require('../../models/launches.model')
 
 
-function httpGetAllLaunches (req,res){
-    return res.status(200).json(getAllLaunches());
+async function httpGetAllLaunches (req,res){
+    return res.status(200).json(await getAllLaunches());
 }
 
 
@@ -33,7 +33,7 @@ function httpAddNewLaunch(req, res) {
   }
 
 
-  function httpAbortLaunch(req, res) {
+ function httpAbortLaunch(req, res) {
     const launchId = Number(req.params.id);
   
     if (!existsLaunchWithId(launchId)) {
