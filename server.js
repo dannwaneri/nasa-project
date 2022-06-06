@@ -16,8 +16,8 @@ dotenv.config({
 //console.log(process.env.MONGO_URI)
 async function startServer() {
   try {
-    await loadPlanetsData();
     await connectDB(process.env.MONGO_URI)
+    await loadPlanetsData();
   server.listen(PORT, () => {
       console.log(`Listening on port ${PORT}...`);
     });
