@@ -9,12 +9,15 @@
     "server": "nodemon server.js",
     "client": "cd client && npm start",
     "dev": "concurrently \"npm run server\" \" npm run client\"",
-    "test": "jest",
+    "test": "jest --detectOpenHandles",
     "test-watch": "jest --watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "jest": {
+    "testEnvironment": "node"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "csv-parse": "^5.1.0",
