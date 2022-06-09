@@ -4,4 +4,12 @@ const connectDB = (url) => {
   return mongoose.connect(url);
 };
 
-module.exports = connectDB;
+
+async function disconnectDB () {
+  await mongoose.disconnect();
+}
+
+module.exports = {
+  connectDB,
+  disconnectDB
+};

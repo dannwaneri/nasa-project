@@ -1,10 +1,14 @@
 const request = require('supertest');
 const app = require('../../app')
+const path = require('path');
 const dotenv = require('dotenv');
-const connectDB = require('../../db/connect')
+const {
+  connectDB,
+  disconnectDB,
+} = require('../../db/connect')
 
 dotenv.config({
-  path: '../../configs/config.env'
+  path: path.resolve(__dirname, '../../configs/config.env')
 });
 
 // We can create a test fixtures with different test cases by using this describe function.
@@ -13,20 +17,21 @@ dotenv.config({
 // that defines each of our test cases.
 
 
+
 describe('Launches Api',() => {
   beforeAll(
     async () => {
       await connectDB(process.env.MONGO_URI)
-    });
+    },100000);
 
     afterAll(async () => {
-      await connectDB(process.env.MONGO_URI)
-    });
+      await disconnectDB()
+    },100000);
 
     describe('Test GET /launches', () => {
       test('It should respond with 200 success', async () => {
           const response = await request(app)
-          .get('/launches')
+          .get('/v1/launches')
           .expect('Content-Type', /json/)
           .expect(200);
       });
@@ -37,26 +42,26 @@ describe('Launches Api',() => {
       const completeLaunchData = {
           mission: 'USS Enterprise',
           rocket: 'NCC 1701-D',
-          target: 'Kepler-186 f',
+          target: 'Kepler-62 f',
           launchDate: 'January 4, 2028',
         };
       
         const launchDataWithoutDate = {
           mission: 'USS Enterprise',
           rocket: 'NCC 1701-D',
-          target: 'Kepler-186 f',
+          target: 'Kepler-62 f',
         };
   
         const launchDataWithInvalidDate = {
           mission: 'USS Enterprise',
           rocket: 'NCC 1701-D',
-          target: 'Kepler-186 f',
+          target: 'Kepler-62 f',
           launchDate: 'zoot',
         };
   
         test('It should respond with 201 created', async () => {
           const response = await request(app)
-        .post('/launches')
+        .post('/v1/launches')
         .send(completeLaunchData)
         .expect('Content-Type', /json/)
           .expect(201);
@@ -69,7 +74,7 @@ describe('Launches Api',() => {
         })
         test('It should catch missing required properties', async () => {
           const response = await request(app)
-          .post('/launches')
+          .post('/v1/launches')
           .send(launchDataWithoutDate)
           .expect('Content-Type', /json/)
           .expect(400);
@@ -79,7 +84,7 @@ describe('Launches Api',() => {
         });
         test('It should catch invalid dates', async () => {
           const response = await request(app)
-            .post('/launches')
+            .post('/v1/launches')
             .send(launchDataWithInvalidDate)
             .expect('Content-Type', /json/)
             .expect(400);
