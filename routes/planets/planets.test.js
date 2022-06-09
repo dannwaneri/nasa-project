@@ -1,5 +1,5 @@
-const request = require('supertest');
 const app = require('../../app')
+const { loadPlanetsData } = require('../../models/planets.model');
 
 // We can create a test fixtures with different test cases by using this describe function.
 // And passing in  a description for our group of tests.
@@ -8,9 +8,10 @@ const app = require('../../app')
 
 describe('Test GET /planets', () => {
     test('It should respond with 200 success', async () => {
+        await loadPlanetsData()
         const response = await request(app)
         .get('/v1/planets')
         .expect('Content-Type', /json/)
         .expect(200);
-    },110000);
+    },10000);
   });
