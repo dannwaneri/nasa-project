@@ -2,6 +2,7 @@ const request = require('supertest');
 const app = require('../../app')
 const path = require('path');
 const dotenv = require('dotenv');
+const { loadPlanetsData } = require('../../models/planets.model');
 const {
   connectDB,
   disconnectDB,
@@ -19,16 +20,18 @@ dotenv.config({
 
 
 describe('Launches Api',() => {
-  beforeAll(
+  beforeEach(
     async () => {
       await connectDB(process.env.MONGO_URI)
-    },100000);
+      await loadPlanetsData()
+    });
 
-    afterAll(async () => {
+    afterEach(async () => {
       await disconnectDB()
-    },100000);
+    });
 
     describe('Test GET /launches', () => {
+      jest.setTimeout(30000);
       test('It should respond with 200 success', async () => {
           const response = await request(app)
           .get('/v1/launches')
@@ -38,7 +41,7 @@ describe('Launches Api',() => {
     });
 
     describe('Test POST /launches', () => {
-
+      jest.setTimeout(30000);
       const completeLaunchData = {
           mission: 'USS Enterprise',
           rocket: 'NCC 1701-D',

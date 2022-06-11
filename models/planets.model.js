@@ -54,7 +54,7 @@ async function savePlanet(planet) {
       upsert: true,
     });
   } catch(err) {
-    console.error(`Could not save planet ${err}`);
+    console.log(`Could not save planet ${err}`);
   }
 }
 
