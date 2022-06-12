@@ -20,6 +20,7 @@ dotenv.config({
 
 
 describe('Launches Api',() => {
+  jest.setTimeout(30000);
   beforeEach(
     async () => {
       await connectDB(process.env.MONGO_URI)

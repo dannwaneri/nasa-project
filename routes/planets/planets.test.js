@@ -19,6 +19,7 @@ dotenv.config({
 
 
 describe('Planets Api',() => {
+  jest.setTimeout(30000);
     beforeAll( async () => {
         await connectDB(process.env.MONGO_URI)
         await loadPlanetsData()
