@@ -10,9 +10,9 @@ jobs:
       CI: true
       MONGO_URL: mongodb://localhost/nasa
     strategy:
-      matrix:
+     matrix:
         node-version: [14.x, 16.x]
-         mongodb-version: ['6.3']
+        mongodb-version: ['6.3']
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
