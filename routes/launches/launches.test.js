@@ -21,13 +21,13 @@ dotenv.config({
 
 describe('Launches Api',() => {
   jest.setTimeout(30000);
-  beforeEach(
+  beforeAll(
     async () => {
       await connectDB(process.env.MONGO_URI)
       await loadPlanetsData()
     });
 
-    afterEach(async () => {
+    afterAll(async () => {
       await disconnectDB()
     });
 

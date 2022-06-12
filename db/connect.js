@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
 async function connectDB (url) {
-  return mongoose.connect(url);
+  await mongoose.connect(url);
 };
 
 
 async function disconnectDB () {
-  return mongoose.disconnect();
+  await mongoose.disconnect();
 }
 
 module.exports = {
